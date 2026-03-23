@@ -6,4 +6,4 @@ class Product:
         self.quantity = quantity
 
     def __str__(self):
-        return f"ID: {self.id}, Name: {self.name}, Price: {self.price}, Quantity: {self.quantity}"
+        return f"ID: {self.id}, Nombre: {self.name}, Precio: {self.price}, Cantidad: {self.quantity}"
