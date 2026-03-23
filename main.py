@@ -16,9 +16,7 @@ class ProductManager:
         return f"Producto '{name}' agregado exitosamente."
 
     def list_products(self):
-        if not self.products:
-            return "No hay productos disponibles."
-        return "\n".join(str(product) for product in self.products)
+        return self.products
 
     def update_product(self, id, name=None, price=None, quantity=None):
         for product in self.products:
@@ -117,13 +115,24 @@ def index():
     </form>
     
     <h2>Productos</h2>
-    <pre>{{ products }}</pre>
+    <table border="1">
+        <tr><th>ID</th><th>Nombre</th><th>Precio</th><th>Cantidad</th><th>Fecha de Creación</th></tr>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.id }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>{{ product.created_at.strftime('%d/%m/%Y %H:%M:%S') }}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>
 ''', message=message, products=products)
 
 def main():
-    app.run(debug=True)
+    app.run(debug=True, port=5001)
 
 if __name__ == "__main__":
     main()
